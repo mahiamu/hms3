@@ -19,7 +19,7 @@ namespace HospitalManagementSystem.API.Dtos.Prescriptions
         public int PatientId { get; set; }
 
         [Required]
-        public int DoctorId { get; set; }
+        public int EmployeeId { get; set; }
 
         [Required]
         public int MedicineId { get; set; }

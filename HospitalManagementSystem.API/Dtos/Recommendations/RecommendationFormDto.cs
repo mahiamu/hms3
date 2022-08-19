@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.API.Dtos.Recommendations
         public string Description { get; set; }
 
         [Required]
-        public int DoctorId { get; set; }
+        public int EmployeeId { get; set; }
 
         [Required]
         public int PatientId { get; set; }

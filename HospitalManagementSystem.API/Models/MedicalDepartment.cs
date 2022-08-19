@@ -13,7 +13,7 @@ namespace HospitalManagementSystem.API.Models
        
         public ICollection<Employee> Employees { get; set; }
         public ICollection<Pharmacist> Pharmacists { get; set; }
-        public ICollection<Doctor> Doctors { get; set; }
+      //  public ICollection<Doctor> Doctors { get; set; }
         public ICollection<Laboratoriest> Laboratoriests { get; set; }
         public ICollection<Nurse> Nurses { get; set; }
 
@@ -21,7 +21,7 @@ namespace HospitalManagementSystem.API.Models
         {
             Employees = new Collection<Employee>();
             Pharmacists = new Collection<Pharmacist>();
-            Doctors = new Collection<Doctor>();
+           // Doctors = new Collection<Doctor>();
             Laboratoriests = new Collection<Laboratoriest>();
             Nurses = new Collection<Nurse>();
         }

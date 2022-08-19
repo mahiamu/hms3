@@ -26,7 +26,7 @@ namespace HospitalManagementSystem.API.Configuration
             builder.Property(pr => pr.PatientId)
             .IsRequired();
 
-            builder.Property(pr => pr.DoctorId)
+            builder.Property(pr => pr.EmployeeId)
             .IsRequired();
 
 

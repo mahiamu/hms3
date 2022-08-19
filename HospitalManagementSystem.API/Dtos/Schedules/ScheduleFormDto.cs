@@ -14,7 +14,7 @@ namespace HospitalManagementSystem.API.Dtos.Schedules
         public DateTime FinishingTime { get; set; }
 
         [Required]
-        public int DoctorId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
         public int WeekdayId { get; set; }
         [Required]

@@ -16,7 +16,7 @@ namespace HospitalManagementSystem.API.Configuration
                 .HasMaxLength(255)
                 .IsRequired();
 
-            builder.Property(r => r.DoctorId)
+            builder.Property(r => r.EmployeeId)
                 .IsRequired();
             builder.Property(r => r.PatientId)
                 .IsRequired();

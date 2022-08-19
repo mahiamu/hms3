@@ -17,7 +17,7 @@ namespace HospitalManagementSystem.API.Configuration
             builder.Property(s => s.FinishingTime)
                 .IsRequired();
 
-            builder.Property(s => s.DoctorId)
+            builder.Property(s => s.EmployeeId)
                 .IsRequired();
             builder.Property(s => s.WeekdayId)
                 .IsRequired();

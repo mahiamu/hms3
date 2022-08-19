@@ -13,6 +13,6 @@ namespace HospitalManagementSystem.API.Dtos.Holidays
         [Required]
         public DateTime EndDate { get; set; }
         [Required]
-        public int DoctorId { get; set; }
+        public int EmployeeId { get; set; }
     }
 }

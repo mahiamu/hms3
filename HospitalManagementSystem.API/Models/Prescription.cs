@@ -13,8 +13,8 @@ namespace HospitalManagementSystem.API.Models
         public string Note { get; set; }
         public Patient Patient { get; set; }
         public int PatientId { get; set; }
-        public Doctor Doctor { get; set; }
-        public int DoctorId { get; set; }
+        public Employee Employee { get; set; }
+        public int EmployeeId { get; set; }
         public Medicine Medicine { get; set; }
         public int MedicineId { get; set; }
 

@@ -23,18 +23,7 @@ namespace HospitalManagementSystem.API.Models
 
         
 
-        public ICollection<Schedule> Schedules { get; set; }
-        public ICollection<Prescription> Prescriptions { get; set; }
-        public ICollection<Holiday> Holidays { get; set; }
-        public ICollection<Recommendation> Recommendations { get; set; }
-
-        public Doctor()
-        {
-            Schedules = new Collection<Schedule>();
-            Prescriptions = new Collection<Prescription>();
-            Holidays = new Collection<Holiday>();
-            Recommendations = new Collection<Recommendation>();
-        }
+       
 
     }
 }

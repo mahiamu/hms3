@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,6 +41,19 @@ namespace HospitalManagementSystem.API.Models
 
         public Country Country { get; set; }
         public int CountryId { get; set; }
+
+        public ICollection<Schedule> Schedules { get; set; }
+        public ICollection<Prescription> Prescriptions { get; set; }
+        public ICollection<Holiday> Holidays { get; set; }
+        public ICollection<Recommendation> Recommendations { get; set; }
+
+        public Employee()
+        {
+            Schedules = new Collection<Schedule>();
+            Prescriptions = new Collection<Prescription>();
+            Holidays = new Collection<Holiday>();
+            Recommendations = new Collection<Recommendation>();
+        }
 
     }
 }

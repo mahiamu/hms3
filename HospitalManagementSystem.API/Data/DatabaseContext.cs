@@ -54,6 +54,8 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Vaccine> Vaccines { get; set; }
 
         public DbSet<BedType> BedTypes { get; set; }
+
+        public DbSet<Pharmacy> Pharmacy { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

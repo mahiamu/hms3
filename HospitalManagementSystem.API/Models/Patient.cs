@@ -34,7 +34,9 @@ namespace HospitalManagementSystem.API.Models
         public City City { get; set; }
         public int CityId { get; set; }
         public PatientFile PatientFile { get; set; }
-       // public int PatientFileId { get; set; }
+
+        public bool is_decessed { get; set; }
+        // public int PatientFileId { get; set; }
 
         public ICollection<ResponsiblePerson> ResponsiblePersons { get; set; }
         public ICollection<Case> Cases { get; set; }

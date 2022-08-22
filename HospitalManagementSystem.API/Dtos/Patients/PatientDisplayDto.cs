@@ -21,5 +21,6 @@ namespace HospitalManagementSystem.API.Dtos.Patients
         public int EducationLevelId { get; set; }
         public int CountryId { get; set; }
         public int CityId { get; set; }
+        public bool is_decessed { get; set; }
     }
 }

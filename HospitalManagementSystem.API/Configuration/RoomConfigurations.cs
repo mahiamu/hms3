@@ -20,13 +20,13 @@ namespace HospitalManagementSystem.API.Configuration
                 .IsRequired();
                 
             builder.Property(r => r.FloorNumber)
-               .IsRequired()
+               
                .HasMaxLength(30);
             builder.Property(r => r.Code)
-               .IsRequired()
+               
                .HasMaxLength(30);
             builder.Property(r => r.Description)
-               .IsRequired()
+               
                .HasMaxLength(30);
              }
 

@@ -17,7 +17,7 @@ namespace HospitalManagementSystem.API.Dtos.Room
         [Required]
         public int FloorNumber { get; set; }
         public int Code { get; set; }
-        [Required, MaxLength(255)]
+        [ MaxLength(255)]
         public string Description { get; set; }
     }
 }

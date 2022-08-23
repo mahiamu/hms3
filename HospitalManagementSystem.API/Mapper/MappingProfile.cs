@@ -43,6 +43,8 @@ using HospitalManagementSystem.API.Dtos.Laboratorists;
 using HospitalManagementSystem.API.Dtos.Recommendations;
 using HospitalManagementSystem.API.Dtos.LaboratoryTestCategories;
 using HospitalManagementSystem.API.Dtos.Prescriptions;
+using HospitalManagementSystem.API.Dtos.Room;
+using HospitalManagementSystem.API.Dtos.Buildings;
 
 namespace HospitalManagementSystem.API.Mapper
 {
@@ -173,6 +175,15 @@ namespace HospitalManagementSystem.API.Mapper
 
             CreateMap<Prescription, PrescriptionDisplayDto>().ReverseMap();
             CreateMap<Prescription, PrescriptionFormDto>().ReverseMap();
+
+            CreateMap<Room, RoomDisplayDto>().ReverseMap();
+            CreateMap<Room, RoomFormDto>().ReverseMap();
+
+            CreateMap<Building, BuildingDisplayDto>().ReverseMap();
+            CreateMap<Room, BuildingFormDto>().ReverseMap();
+
+
+
         }
     }
 }

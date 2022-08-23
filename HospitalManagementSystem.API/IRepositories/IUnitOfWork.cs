@@ -50,6 +50,10 @@ namespace HospitalManagementSystem.API.IRepositories
         IGenericRepository<Recommendation> Recommendations { get; }
         IGenericRepository<LaboratoryTestCategory> LaboratoryTestCategories { get; }
         IGenericRepository<Prescription> Prescriptions { get; }
+        IGenericRepository<Building> Buildings { get; }
+        IGenericRepository<Room> Rooms { get; }
+
+
 
         IGenericRepository<Medication> Medications { get; }
     }

@@ -4,6 +4,7 @@ using HospitalManagementSystem.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220823072319_AddRoomTable")]
+    partial class AddRoomTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -722,33 +724,6 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MedicalDepartments");
-                });
-
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("MedicineCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicineCategoryId");
-
-                    b.ToTable("Medications");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Medicine", b =>
@@ -1613,17 +1588,6 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("LaboratoryTestCategory");
                 });
 
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medication", b =>
-                {
-                    b.HasOne("HospitalManagementSystem.API.Models.MedicineCategory", "MedicineCategory")
-                        .WithMany("Medications")
-                        .HasForeignKey("MedicineCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MedicineCategory");
-                });
-
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Medicine", b =>
                 {
                     b.HasOne("HospitalManagementSystem.API.Models.Country", "Country")
@@ -1633,7 +1597,7 @@ namespace HospitalManagementSystem.API.Migrations
                         .IsRequired();
 
                     b.HasOne("HospitalManagementSystem.API.Models.MedicineCategory", "MedicineCategory")
-                        .WithMany()
+                        .WithMany("Medicines")
                         .HasForeignKey("MedicineCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1982,7 +1946,7 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.MedicineCategory", b =>
                 {
-                    b.Navigation("Medications");
+                    b.Navigation("Medicines");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Patient", b =>

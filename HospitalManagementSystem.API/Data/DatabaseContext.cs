@@ -56,6 +56,10 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<BedType> BedTypes { get; set; }
 
         public DbSet<Medication> Medications { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -105,6 +109,10 @@ namespace HospitalManagementSystem.API.Data
 
             builder.ApplyConfiguration(new BedTypeConfigurations());
             builder.ApplyConfiguration(new MedicationConfigurations());
+
+            builder.ApplyConfiguration(new BuildingConfigurations());
+            builder.ApplyConfiguration(new RoomConfigurations());
+
 
         }
     }

@@ -9,7 +9,7 @@ namespace HospitalManagementSystem.API.Dtos.Buildings
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
-        public int Code { get; set; }
+        public string Code { get; set; }
         [MaxLength(255)]
         public string Description { get; set; }
     }

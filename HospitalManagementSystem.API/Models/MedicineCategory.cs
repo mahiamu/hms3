@@ -9,11 +9,11 @@ namespace HospitalManagementSystem.API.Models
 {
     public class MedicineCategory:BaseModel
     {
-        public ICollection<Medicine> Medicines { get; set; }
+        public ICollection<Medication> Medications { get; set; }
 
         public MedicineCategory()
         {
-            Medicines = new Collection<Medicine>();
+            Medications = new Collection<Medication>();
         }
     }
 }

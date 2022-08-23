@@ -53,6 +53,8 @@ namespace HospitalManagementSystem.API.Data.Repositories
         private IGenericRepository<LaboratoryTestCategory> _laboratoryTestCategories;
        
         private IGenericRepository<Prescription> _prescriptions;
+
+        private IGenericRepository<Medication> _medications;
         public UnitOfWork(DatabaseContext context)
         {
             _context = context;
@@ -112,5 +114,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         public IGenericRepository<LaboratoryTestCategory> LaboratoryTestCategories => _laboratoryTestCategories ??= new GenericRepository<LaboratoryTestCategory>(_context);
         
         public IGenericRepository<Prescription> Prescriptions => _prescriptions ??= new GenericRepository<Prescription>(_context);
+
+        public IGenericRepository<Medication> Medications => _medications ??= new GenericRepository<Medication>(_context);
     }
 }

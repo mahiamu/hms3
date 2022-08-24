@@ -57,6 +57,8 @@ namespace HospitalManagementSystem.API.Data.Repositories
         private IGenericRepository<Medication> _medications;
         private IGenericRepository<Building> _buildings;
         private IGenericRepository<Room> _rooms;
+        private IGenericRepository<Ward> _Wards;
+
 
 
         public UnitOfWork(DatabaseContext context)
@@ -111,9 +113,10 @@ namespace HospitalManagementSystem.API.Data.Repositories
         public IGenericRepository<Specialization> Specializations => _specializations ??= new GenericRepository<Specialization>(_context);
         public IGenericRepository<Vaccine> Vaccines => _vaccines ??= new GenericRepository<Vaccine>(_context);
         public IGenericRepository<Holiday> Holidays => _holidays ??= new GenericRepository<Holiday>(_context);
-      
+        public IGenericRepository<Ward> Wards => _Wards ??= new GenericRepository<Ward>(_context);
 
-       
+
+
         public IGenericRepository<Recommendation> Recommendations => _recommendations ??= new GenericRepository<Recommendation>(_context);
         public IGenericRepository<LaboratoryTestCategory> LaboratoryTestCategories => _laboratoryTestCategories ??= new GenericRepository<LaboratoryTestCategory>(_context);
         

@@ -58,6 +58,8 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Ward> Wards { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -111,7 +113,9 @@ namespace HospitalManagementSystem.API.Data
             builder.ApplyConfiguration(new MedicationConfigurations());
 
             builder.ApplyConfiguration(new BuildingConfigurations());
-            builder.ApplyConfiguration(new RoomConfigurations());
+            builder.ApplyConfiguration(new WardConfigurations());
+            
+
 
 
         }

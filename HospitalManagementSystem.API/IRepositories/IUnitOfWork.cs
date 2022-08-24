@@ -56,5 +56,8 @@ namespace HospitalManagementSystem.API.IRepositories
 
 
         IGenericRepository<Medication> Medications { get; }
-    }
+        IGenericRepository<PatientSchedule> PatientSchedules { get; }
+        IGenericRepository<BillSchedule> BillSchedules { get; }
+    
+}
 }

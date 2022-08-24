@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HospitalManagementSystem.API.Configuration
 {
-    public class RoomConfigurations : IEntityTypeConfiguration<Room>
+    public class WardConfigurations : IEntityTypeConfiguration<Room>
     {
         public void Configure(EntityTypeBuilder<Room> builder)
         {

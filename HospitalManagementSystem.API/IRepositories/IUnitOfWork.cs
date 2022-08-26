@@ -54,6 +54,7 @@ namespace HospitalManagementSystem.API.IRepositories
         IGenericRepository<Room> Rooms { get; }
         IGenericRepository<Ward> Wards { get; }
 
+        IGenericRepository<Admission> Admissions { get; }
 
 
 

@@ -14,19 +14,11 @@ namespace HospitalManagementSystem.API.Models
         public float Amount { get; set; }
 
         public DateTime Date  { get; set; }
+        public Employee Employee { get; set; }
 
         public int EmployeeId { get; set; }
 
-        public ICollection<PatientSchedule> PatientSchedules { get; set; }
-        public ICollection<Employee> Employees { get; set; }
        
-
-        public BillSchedule()
-        {
-            PatientSchedules = new Collection<PatientSchedule>();
-            ;
-            Employees = new Collection<Employee>();
-        }
 
 
     }

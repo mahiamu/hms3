@@ -32,6 +32,9 @@ namespace HospitalManagementSystem.API.Configuration
             builder.Property(ps => ps.Is_Dismissed)
                 .HasDefaultValue(false);
 
+           builder.Property(ps => ps.Is_Confirmed)
+                 .HasDefaultValue(false);
+
 
 
             builder.Property(ps => ps.ScheduleDate)

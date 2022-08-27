@@ -4,6 +4,7 @@ using HospitalManagementSystem.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220825120104_editcolumn1")]
+    partial class editcolumn1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,7 +89,12 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<int?>("PatientScheduleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PatientScheduleId");
 
                     b.ToTable("AdmissionTypes");
                 });
@@ -161,10 +168,7 @@ namespace HospitalManagementSystem.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("PatientScheduleId")
-                        .IsUnique();
+                    b.HasIndex("PatientScheduleId");
 
                     b.ToTable("BillSchedules");
                 });
@@ -443,6 +447,9 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<int?>("BillScheduleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -490,10 +497,15 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("PatientScheduleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BillScheduleId");
 
                     b.HasIndex("CityId");
 
@@ -510,6 +522,8 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasIndex("MaritalStatusId");
 
                     b.HasIndex("MedicalDepartmentId");
+
+                    b.HasIndex("PatientScheduleId");
 
                     b.ToTable("Employees");
                 });
@@ -1002,6 +1016,9 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("PatientScheduleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Phone")
                         .HasColumnType("int");
 
@@ -1021,6 +1038,8 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasIndex("LanguageId");
 
                     b.HasIndex("MaritalStatusId");
+
+                    b.HasIndex("PatientScheduleId");
 
                     b.ToTable("Patients");
                 });
@@ -1059,13 +1078,11 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Property<int>("AdmissionTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("BillScheduleId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Is_Confirmed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Is_Dismissed")
                         .ValueGeneratedOnAdd()
@@ -1095,6 +1112,8 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AdmissionTypeId");
+
+                    b.HasIndex("BillScheduleId");
 
                     b.HasIndex("EmployeeId");
 
@@ -1400,9 +1419,14 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("PatientScheduleId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BuildingId");
+
+                    b.HasIndex("PatientScheduleId");
 
                     b.ToTable("Rooms");
                 });
@@ -1543,21 +1567,20 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("Gender");
                 });
 
+            modelBuilder.Entity("HospitalManagementSystem.API.Models.AdmissionType", b =>
+                {
+                    b.HasOne("HospitalManagementSystem.API.Models.PatientSchedule", null)
+                        .WithMany("AdmissionTypes")
+                        .HasForeignKey("PatientScheduleId");
+                });
+
             modelBuilder.Entity("HospitalManagementSystem.API.Models.BillSchedule", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.API.Models.Employee", "Employee")
-                        .WithMany("BillSchedules")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("HospitalManagementSystem.API.Models.PatientSchedule", "PatientSchedule")
-                        .WithOne("BillSchedule")
-                        .HasForeignKey("HospitalManagementSystem.API.Models.BillSchedule", "PatientScheduleId")
+                        .WithMany()
+                        .HasForeignKey("PatientScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
 
                     b.Navigation("PatientSchedule");
                 });
@@ -1613,6 +1636,10 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Employee", b =>
                 {
+                    b.HasOne("HospitalManagementSystem.API.Models.BillSchedule", null)
+                        .WithMany("Employees")
+                        .HasForeignKey("BillScheduleId");
+
                     b.HasOne("HospitalManagementSystem.API.Models.City", "City")
                         .WithMany("Employees")
                         .HasForeignKey("CityId")
@@ -1660,6 +1687,10 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasForeignKey("MedicalDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("HospitalManagementSystem.API.Models.PatientSchedule", null)
+                        .WithMany("Employees")
+                        .HasForeignKey("PatientScheduleId");
 
                     b.Navigation("City");
 
@@ -1806,6 +1837,10 @@ namespace HospitalManagementSystem.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HospitalManagementSystem.API.Models.PatientSchedule", null)
+                        .WithMany("Patients")
+                        .HasForeignKey("PatientScheduleId");
+
                     b.Navigation("City");
 
                     b.Navigation("Country");
@@ -1833,25 +1868,29 @@ namespace HospitalManagementSystem.API.Migrations
             modelBuilder.Entity("HospitalManagementSystem.API.Models.PatientSchedule", b =>
                 {
                     b.HasOne("HospitalManagementSystem.API.Models.AdmissionType", "AdmissionType")
-                        .WithMany("PatientSchedules")
+                        .WithMany()
                         .HasForeignKey("AdmissionTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HospitalManagementSystem.API.Models.Employee", "Employee")
+                    b.HasOne("HospitalManagementSystem.API.Models.BillSchedule", null)
                         .WithMany("PatientSchedules")
+                        .HasForeignKey("BillScheduleId");
+
+                    b.HasOne("HospitalManagementSystem.API.Models.Employee", "Employee")
+                        .WithMany()
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalManagementSystem.API.Models.Patient", "Patient")
-                        .WithMany("PatientSchedules")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HospitalManagementSystem.API.Models.Room", "Room")
-                        .WithMany("PatientSchedules")
+                        .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1984,6 +2023,10 @@ namespace HospitalManagementSystem.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HospitalManagementSystem.API.Models.PatientSchedule", null)
+                        .WithMany("Rooms")
+                        .HasForeignKey("PatientScheduleId");
+
                     b.Navigation("Building");
                 });
 
@@ -2014,14 +2057,16 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("Weekday");
                 });
 
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.AdmissionType", b =>
-                {
-                    b.Navigation("PatientSchedules");
-                });
-
             modelBuilder.Entity("HospitalManagementSystem.API.Models.AppointmentDuration", b =>
                 {
                     b.Navigation("Schedules");
+                });
+
+            modelBuilder.Entity("HospitalManagementSystem.API.Models.BillSchedule", b =>
+                {
+                    b.Navigation("Employees");
+
+                    b.Navigation("PatientSchedules");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.BloodGroup", b =>
@@ -2058,11 +2103,7 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Employee", b =>
                 {
-                    b.Navigation("BillSchedules");
-
                     b.Navigation("Holidays");
-
-                    b.Navigation("PatientSchedules");
 
                     b.Navigation("Prescriptions");
 
@@ -2141,8 +2182,6 @@ namespace HospitalManagementSystem.API.Migrations
 
                     b.Navigation("PatientFile");
 
-                    b.Navigation("PatientSchedules");
-
                     b.Navigation("Prescriptions");
 
                     b.Navigation("Recommendations");
@@ -2152,17 +2191,18 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.PatientSchedule", b =>
                 {
-                    b.Navigation("BillSchedule");
+                    b.Navigation("AdmissionTypes");
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("Patients");
+
+                    b.Navigation("Rooms");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Relationship", b =>
                 {
                     b.Navigation("ResponsiblePersons");
-                });
-
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.Room", b =>
-                {
-                    b.Navigation("PatientSchedules");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Weekday", b =>

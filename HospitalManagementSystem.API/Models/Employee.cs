@@ -46,6 +46,9 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Holiday> Holidays { get; set; }
         public ICollection<Recommendation> Recommendations { get; set; }
+        public ICollection<PatientSchedule> PatientSchedules { get; set; }
+        public ICollection<BillSchedule> BillSchedules { get; set; }
+
 
         public Employee()
         {
@@ -53,6 +56,8 @@ namespace HospitalManagementSystem.API.Models
             Prescriptions = new Collection<Prescription>();
             Holidays = new Collection<Holiday>();
             Recommendations = new Collection<Recommendation>();
+            PatientSchedules = new Collection<PatientSchedule>();
+            BillSchedules = new Collection<BillSchedule>(); 
         }
 
     }

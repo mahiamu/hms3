@@ -46,6 +46,7 @@ using HospitalManagementSystem.API.Dtos.Prescriptions;
 using HospitalManagementSystem.API.Dtos.Medications;
 using HospitalManagementSystem.API.Dtos.Room;
 using HospitalManagementSystem.API.Dtos.Buildings;
+using HospitalManagementSystem.API.Dtos.PatientSchedules;
 
 namespace HospitalManagementSystem.API.Mapper
 {
@@ -185,6 +186,9 @@ namespace HospitalManagementSystem.API.Mapper
 
             CreateMap<Building, BuildingDisplayDto>().ReverseMap();
             CreateMap<Room, BuildingFormDto>().ReverseMap();
+            CreateMap<PatientSchedule, PatientScheduleDisplayDto>().ReverseMap();
+            CreateMap<PatientSchedule, PatientScheduleFormDto>().ReverseMap();
+
 
 
 

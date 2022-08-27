@@ -25,7 +25,10 @@ namespace HospitalManagementSystem.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BillSchedule>>> GetBillSchedules()
         {
-            return await _context.BillSchedules.ToListAsync();
+            return await _context.BillSchedules.Include(b => b.PatientSchedule)
+                .Include(b => b.Employee)
+               
+               .ToListAsync();
         }
 
         // GET: api/BillSchedules/5

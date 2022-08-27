@@ -4,6 +4,7 @@ using HospitalManagementSystem.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220826133039_EditRelationshipsForBillScheduleAndPatientSchedule")]
+    partial class EditRelationshipsForBillScheduleAndPatientSchedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1062,11 +1064,6 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Is_Confirmed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
                     b.Property<bool>("Is_Dismissed")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -1545,7 +1542,7 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.BillSchedule", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.API.Models.Employee", "Employee")
+                    b.HasOne("HospitalManagementSystem.API.Models.Employee", null)
                         .WithMany("BillSchedules")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1556,8 +1553,6 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasForeignKey("HospitalManagementSystem.API.Models.BillSchedule", "PatientScheduleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
 
                     b.Navigation("PatientSchedule");
                 });

@@ -30,19 +30,13 @@ namespace HospitalManagementSystem.API.Models
         public DateTime ScheduleDate { get; set; }
 
         public DateTime ScheduleTime { get; set; }
+        public bool Is_Confirmed { get; set; }
 
-        public ICollection<Patient> Patients { get; set; }
-        public ICollection<AdmissionType> AdmissionTypes { get; set; }
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<Employee> Employees { get; set; }
+        public BillSchedule BillSchedule { get; set; }
 
-        public PatientSchedule()
-        {
-            Patients = new Collection<Patient>();
-            AdmissionTypes = new Collection<AdmissionType>();
-            Rooms = new Collection<Room>();
-            Employees = new Collection<Employee>();
-        }
+
+       
+       
 
 
     }

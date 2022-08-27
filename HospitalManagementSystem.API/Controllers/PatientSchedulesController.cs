@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HospitalManagementSystem.API.Data;
 using HospitalManagementSystem.API.Models;
+using AutoMapper;
+using HospitalManagementSystem.API.Dtos.PatientSchedules;
+using Microsoft.Extensions.Logging;
+using HospitalManagementSystem.API.IRepositories;
 
 namespace HospitalManagementSystem.API.Controllers
 {
@@ -14,18 +18,33 @@ namespace HospitalManagementSystem.API.Controllers
     [ApiController]
     public class PatientSchedulesController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly DatabaseContext _context;
-
-        public PatientSchedulesController(DatabaseContext context)
+       
+        public PatientSchedulesController(IMapper mapper , DatabaseContext context)
         {
+            _mapper = mapper;
             _context = context;
+
         }
+
+      
 
         // GET: api/PatientSchedules
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PatientSchedule>>> GetPatientSchedules()
         {
-            return await _context.PatientSchedules.ToListAsync();
+            var patientschedules = await _context.PatientSchedules.Include(e => e.Patient)
+                .Include(e => e.Employee)
+                .Include(e => e.AdmissionType)
+                .Include(e => e.Room)
+
+                .ToListAsync();
+           
+           // var result = _mapper.Map<IList<PatientScheduleDisplayDto>>(patientschedules);
+            return Ok(patientschedules);
+
+               
         }
 
         // GET: api/PatientSchedules/5

@@ -1,4 +1,7 @@
-﻿namespace HospitalManagementSystem.API.Models
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace HospitalManagementSystem.API.Models
 {
     public class Room
     {
@@ -9,5 +12,13 @@
         public int FloorNumber { get; set; }
         public int Code { get; set; }
         public string Description { get; set; }
+
+        public ICollection<PatientSchedule> PatientSchedules { get; set; }
+
+        public Room()
+        {
+            PatientSchedules = new Collection<PatientSchedule>();
+        }
+        
     }
 }

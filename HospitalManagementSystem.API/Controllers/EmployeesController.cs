@@ -35,6 +35,8 @@ namespace HospitalManagementSystem.API.Controllers
             {
                 var employees = await _unitOfWork.Employees.GetAll();
                 var result = _mapper.Map<IList<EmployeeDisplayDto>>(employees);
+                
+
 
                 return Ok(result);
             }

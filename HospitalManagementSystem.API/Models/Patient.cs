@@ -42,6 +42,7 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<Case> Cases { get; set; }
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Recommendation> Recommendations { get; set; }
+        public ICollection<PatientSchedule> PatientSchedules { get; set; }
 
         public Patient()
         {
@@ -49,6 +50,7 @@ namespace HospitalManagementSystem.API.Models
             Cases = new Collection<Case>();
             Prescriptions = new Collection<Prescription>();
             Recommendations = new Collection<Recommendation>();
+            PatientSchedules = new Collection<PatientSchedule>();
         }
     }
 }

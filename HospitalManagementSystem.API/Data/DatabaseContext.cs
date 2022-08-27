@@ -58,6 +58,8 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<PatientSchedule> PatientSchedules { get; set; }
+        public DbSet<BillSchedule> BillSchedules { get; set; }
         public DbSet<Ward> Wards { get; set; }
         public DbSet<Admission> Admissions { get; set; }
         public DbSet<LabRequest> Labrequests { get; set; }
@@ -117,6 +119,10 @@ namespace HospitalManagementSystem.API.Data
             builder.ApplyConfiguration(new MedicationConfigurations());
 
             builder.ApplyConfiguration(new BuildingConfigurations());
+            builder.ApplyConfiguration(new RoomConfigurations());
+            builder.ApplyConfiguration(new PatientScheduleConfigurations());
+            builder.ApplyConfiguration(new BillScheduleConfigurations());
+
             builder.ApplyConfiguration(new WardConfigurations());
             builder.ApplyConfiguration(new AdmissionConfigurations());
             builder.ApplyConfiguration(new LabRequestConfiguration());

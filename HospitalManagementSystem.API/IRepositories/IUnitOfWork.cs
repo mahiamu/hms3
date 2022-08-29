@@ -46,19 +46,15 @@ namespace HospitalManagementSystem.API.IRepositories
         IGenericRepository<Vaccine> Vaccines { get; }
         IGenericRepository<Holiday> Holidays { get; }
         IGenericRepository<PatientFile> PatientFiles { get; }
-
         IGenericRepository<Recommendation> Recommendations { get; }
         IGenericRepository<LaboratoryTestCategory> LaboratoryTestCategories { get; }
         IGenericRepository<Prescription> Prescriptions { get; }
         IGenericRepository<Building> Buildings { get; }
         IGenericRepository<Room> Rooms { get; }
         IGenericRepository<Ward> Wards { get; }
-
         IGenericRepository<Admission> Admissions { get; }
         IGenericRepository<LabRequest> LabRequests { get; }
-
-
-
+        IGenericRepository<BillLab> BillLabs { get; }
         IGenericRepository<Medication> Medications { get; }
     }
 }

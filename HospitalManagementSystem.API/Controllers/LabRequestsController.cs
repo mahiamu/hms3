@@ -25,14 +25,14 @@ namespace HospitalManagementSystem.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LabRequest>>> GetLabrequests()
         {
-            return await _context.Labrequests.ToListAsync();
+            return await _context.LabRequests.ToListAsync();
         }
 
         // GET: api/LabRequests/5
         [HttpGet("{id}")]
         public async Task<ActionResult<LabRequest>> GetLabRequest(int id)
         {
-            var labRequest = await _context.Labrequests.FindAsync(id);
+            var labRequest = await _context.LabRequests.FindAsync(id);
 
             if (labRequest == null)
             {
@@ -78,7 +78,7 @@ namespace HospitalManagementSystem.API.Controllers
         [HttpPost]
         public async Task<ActionResult<LabRequest>> PostLabRequest(LabRequest labRequest)
         {
-            _context.Labrequests.Add(labRequest);
+            _context.LabRequests.Add(labRequest);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLabRequest", new { id = labRequest.Id }, labRequest);
@@ -88,13 +88,13 @@ namespace HospitalManagementSystem.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLabRequest(int id)
         {
-            var labRequest = await _context.Labrequests.FindAsync(id);
+            var labRequest = await _context.LabRequests.FindAsync(id);
             if (labRequest == null)
             {
                 return NotFound();
             }
 
-            _context.Labrequests.Remove(labRequest);
+            _context.LabRequests.Remove(labRequest);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace HospitalManagementSystem.API.Controllers
 
         private bool LabRequestExists(int id)
         {
-            return _context.Labrequests.Any(e => e.Id == id);
+            return _context.LabRequests.Any(e => e.Id == id);
         }
     }
 }

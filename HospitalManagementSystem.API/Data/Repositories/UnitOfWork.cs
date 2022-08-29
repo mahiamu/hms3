@@ -63,6 +63,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         private IGenericRepository<Ward> _Wards;
         private IGenericRepository<Admission> _admissions;
         private IGenericRepository<LabRequest> _labrequests;
+        private IGenericRepository<MedSupplier> _medsuppliers;
 
 
 
@@ -136,6 +137,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         public IGenericRepository<Admission> Admissions => _admissions ??= new GenericRepository<Admission>(_context);
 
         public IGenericRepository<LabRequest> LabRequests => _labrequests ??= new GenericRepository<LabRequest>(_context);
+        public IGenericRepository<MedSupplier> MedSuppliers => _medsuppliers ??= new GenericRepository<MedSupplier>(_context);
 
     }
 }

@@ -63,6 +63,7 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Ward> Wards { get; set; }
         public DbSet<Admission> Admissions { get; set; }
         public DbSet<LabRequest> Labrequests { get; set; }
+        public DbSet<MedSupplier> MedSuppliers { get; set; }
 
 
 
@@ -126,6 +127,7 @@ namespace HospitalManagementSystem.API.Data
             builder.ApplyConfiguration(new WardConfiguration());
             builder.ApplyConfiguration(new AdmissionConfigurations());
             builder.ApplyConfiguration(new LabRequestConfiguration());
+            builder.ApplyConfiguration(new MedSupplierConfigurations());
 
 
 

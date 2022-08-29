@@ -123,7 +123,7 @@ namespace HospitalManagementSystem.API.Data
             builder.ApplyConfiguration(new PatientScheduleConfigurations());
             builder.ApplyConfiguration(new BillScheduleConfigurations());
 
-            builder.ApplyConfiguration(new WardConfigurations());
+            builder.ApplyConfiguration(new WardConfiguration());
             builder.ApplyConfiguration(new AdmissionConfigurations());
             builder.ApplyConfiguration(new LabRequestConfiguration());
 

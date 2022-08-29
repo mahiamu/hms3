@@ -8,15 +8,25 @@ namespace HospitalManagementSystem.API.Models
     public class Prescription
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string History { get; set; }
-        public string Note { get; set; }
         public Patient Patient { get; set; }
         public int PatientId { get; set; }
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
-        public Medicine Medicine { get; set; }
-        public int MedicineId { get; set; }
+        public Admission Admission { get; set; }
+        public int AdmissionId { get; set; }
+        public String prescriptionSubject { get; set; }
+        public DateTime OrderDate { get; set; }
+        public String prescriptionDetail { get; set; }
+        public bool Is_Cancelled { get; set; }
+
+        public Medication Medication { get; set; }
+        public int MedicationId { get; set; }
+
+      
+      
+      
+      
+
 
 
 

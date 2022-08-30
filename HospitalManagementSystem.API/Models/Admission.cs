@@ -24,8 +24,10 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<Employee> Employees { get; set; }
         public ICollection<Room> Rooms { get; set; }
         public ICollection<Ward> Wards { get; set; }
+        public ICollection<Prescription> Prescriptions { get; set; }
         public Admission()
         {
+            Prescriptions = new Collection<Prescription>();
             Patients = new Collection<Patient>();
             Employees = new Collection<Employee>();
             Rooms = new Collection<Room>();

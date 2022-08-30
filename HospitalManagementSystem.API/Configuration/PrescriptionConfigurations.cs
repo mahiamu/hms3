@@ -13,19 +13,27 @@ namespace HospitalManagementSystem.API.Configuration
         public void Configure(EntityTypeBuilder<Prescription> builder)
         {
 
-            builder.Property(pr => pr.Date)
+            builder.Property(pr => pr.OrderDate)
             .IsRequired();
 
-            builder.Property(pr => pr.History);
 
-            builder.Property(pr => pr.Note);
+            builder.Property(pr => pr.AdmissionId)
+            .IsRequired();
 
-           
+
+
+            builder.Property(pr => pr.MedicationId)
+            .IsRequired();
+
             builder.Property(pr => pr.PatientId)
             .IsRequired();
 
             builder.Property(pr => pr.EmployeeId)
             .IsRequired();
+
+
+            builder.Property(pr => pr.Is_Cancelled)
+            .HasDefaultValue(false);
 
 
         }

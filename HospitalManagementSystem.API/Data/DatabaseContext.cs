@@ -37,7 +37,7 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Pharmacist> Pharmacists { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<MedicineCategory> MedicineCategories { get; set; }
-        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<MedicineStockHospital> MedicineStockHospitas { get; set; }
         public DbSet<PatientFile> PatientFiles { get; set; }
         public DbSet<Laboratoriest> Laboratoriests { get; set; }
         public DbSet<Weekday> Weekdays { get; set; }
@@ -99,7 +99,7 @@ namespace HospitalManagementSystem.API.Data
             builder.ApplyConfiguration(new PatientFileConfigurations());
             builder.ApplyConfiguration(new LaboratoriestConfigurations());
             builder.ApplyConfiguration(new MedicineCategoryConfigurations());
-            builder.ApplyConfiguration(new MedicineConfigurations());
+            builder.ApplyConfiguration(new MedicineStockHospitalConfigurations());
             builder.ApplyConfiguration(new WeekdayConfigurations());
             builder.ApplyConfiguration(new ScheduleConfigurations());
             builder.ApplyConfiguration(new PrescriptionConfigurations());

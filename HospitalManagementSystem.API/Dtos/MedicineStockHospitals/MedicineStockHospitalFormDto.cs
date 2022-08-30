@@ -6,26 +6,32 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.API.Dtos.Medicines
 {
-    public class MedicineFormDto
+    public class MedicineStockHospitalFormDto
     {
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        [MaxLength(225)]
+
+        public String Description{ get; set; }
         [Required]
-        public int PurchasePrice { get; set; }
-        public int SalePrice { get; set; }
+        public int MedicationId { get; set; }
+        [Required]
+        public string BatchNumber { get; set; }
+        [Required]
         public int Quantity { get; set; }
-        [MaxLength(50)]
-        public string GenericName { get; set; }
-        [Required]
-        public string Effects { get; set; }
+
+      
+
         [Required]
         public DateTime ExpirationDate { get; set; }
 
         [Required]
-        public int MedicineCategoryId { get; set; }
+        public int EmployeeId { get; set; }
         [Required]
-        public int CountryId { get; set; }
+        public int MedSupplierId { get; set; }
+        public DateTime TimeSatamp { get; set; }
 
 
     }

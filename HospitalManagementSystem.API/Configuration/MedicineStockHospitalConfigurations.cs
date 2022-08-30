@@ -8,26 +8,31 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.API.Configuration
 {
-    public class MedicineConfigurations : IEntityTypeConfiguration<Medicine>
+    public class MedicineStockHospitalConfigurations : IEntityTypeConfiguration<MedicineStockHospital>
     {
-        public void Configure(EntityTypeBuilder<Medicine> builder)
+        public void Configure(EntityTypeBuilder<MedicineStockHospital> builder)
         {
+
             builder.Property(m => m.Name)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(m => m.PurchasePrice)
+            builder.Property(m => m.Description)
+
+               .HasMaxLength(225);
+            builder.Property(m => m.MedicationId)
                 .IsRequired();
-            builder.Property(m => m.GenericName)
-                .HasMaxLength(50);
-            builder.Property(m => m.Effects)
+
+            builder.Property(m => m.BatchNumber)
                 .IsRequired();
             builder.Property(m => m.ExpirationDate)
                 .IsRequired();
 
-            builder.Property(m => m.MedicineCategoryId)
+            builder.Property(m => m.Quantity)
                 .IsRequired();
-            builder.Property(m => m.CountryId)
+            builder.Property(m => m.EmployeeId)
                 .IsRequired();
+            builder.Property(m => m.MedSupplierId)
+               .IsRequired();
         }
     }
 }

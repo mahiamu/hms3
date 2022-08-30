@@ -33,7 +33,7 @@ namespace HospitalManagementSystem.API.IRepositories
         IGenericRepository<Pharmacist> Pharmacists { get; }
         IGenericRepository<Doctor> Doctors { get; }
         IGenericRepository<MedicineCategory> MedicineCategories { get; }
-        IGenericRepository<Medicine> Medicines { get; }
+        IGenericRepository<MedicineStockHospital> MedicineStockHospitals { get; }
         IGenericRepository<Laboratoriest> Laboratoriests { get; }
         IGenericRepository<Receptionist> Receptionists { get; }
         IGenericRepository<Weekday> Weekdays { get; }

@@ -4,6 +4,7 @@ using HospitalManagementSystem.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220829130543_AddMedSupplierTable")]
+    partial class AddMedSupplierTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -912,6 +914,54 @@ namespace HospitalManagementSystem.API.Migrations
                     b.ToTable("Medications");
                 });
 
+            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medicine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Effects")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GenericName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("MedicineCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("PurchasePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalePrice")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("MedicineCategoryId");
+
+                    b.ToTable("Medicines");
+                });
+
             modelBuilder.Entity("HospitalManagementSystem.API.Models.MedicineCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -932,57 +982,6 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MedicineCategories");
-                });
-
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.MedicineStockHospital", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("BatchNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(225)
-                        .HasColumnType("nvarchar(225)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MedSupplierId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MedicationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("TimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("MedSupplierId");
-
-                    b.HasIndex("MedicationId")
-                        .IsUnique();
-
-                    b.ToTable("MedicineStockHospitas");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.MedSupplier", b =>
@@ -1366,6 +1365,9 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Property<string>("History")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
@@ -1375,6 +1377,8 @@ namespace HospitalManagementSystem.API.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("MedicineId");
 
                     b.HasIndex("PatientId");
 
@@ -2020,31 +2024,23 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("MedicineCategory");
                 });
 
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.MedicineStockHospital", b =>
+            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medicine", b =>
                 {
-                    b.HasOne("HospitalManagementSystem.API.Models.Employee", "Employee")
-                        .WithMany("MedicineStockHospitals")
-                        .HasForeignKey("EmployeeId")
+                    b.HasOne("HospitalManagementSystem.API.Models.Country", "Country")
+                        .WithMany("Medicines")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HospitalManagementSystem.API.Models.MedSupplier", "MedSupplier")
-                        .WithMany("MedicineStockHospitals")
-                        .HasForeignKey("MedSupplierId")
+                    b.HasOne("HospitalManagementSystem.API.Models.MedicineCategory", "MedicineCategory")
+                        .WithMany()
+                        .HasForeignKey("MedicineCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HospitalManagementSystem.API.Models.Medication", "Medication")
-                        .WithOne("MedicineStockHospital")
-                        .HasForeignKey("HospitalManagementSystem.API.Models.MedicineStockHospital", "MedicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Country");
 
-                    b.Navigation("Employee");
-
-                    b.Navigation("MedSupplier");
-
-                    b.Navigation("Medication");
+                    b.Navigation("MedicineCategory");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Nurse", b =>
@@ -2194,6 +2190,12 @@ namespace HospitalManagementSystem.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HospitalManagementSystem.API.Models.Medicine", "Medicine")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HospitalManagementSystem.API.Models.Patient", "Patient")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PatientId")
@@ -2201,6 +2203,8 @@ namespace HospitalManagementSystem.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Employee");
+
+                    b.Navigation("Medicine");
 
                     b.Navigation("Patient");
                 });
@@ -2369,6 +2373,8 @@ namespace HospitalManagementSystem.API.Migrations
                 {
                     b.Navigation("Employees");
 
+                    b.Navigation("Medicines");
+
                     b.Navigation("Patients");
 
                     b.Navigation("ResponsiblePersons");
@@ -2386,8 +2392,6 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("BillSchedules");
 
                     b.Navigation("Holidays");
-
-                    b.Navigation("MedicineStockHospitals");
 
                     b.Navigation("PatientSchedules");
 
@@ -2464,19 +2468,14 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("Pharmacists");
                 });
 
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medication", b =>
+            modelBuilder.Entity("HospitalManagementSystem.API.Models.Medicine", b =>
                 {
-                    b.Navigation("MedicineStockHospital");
+                    b.Navigation("Prescriptions");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.MedicineCategory", b =>
                 {
                     b.Navigation("Medications");
-                });
-
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.MedSupplier", b =>
-                {
-                    b.Navigation("MedicineStockHospitals");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Patient", b =>

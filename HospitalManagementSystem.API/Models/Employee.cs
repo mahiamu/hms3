@@ -48,10 +48,12 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<Recommendation> Recommendations { get; set; }
         public ICollection<PatientSchedule> PatientSchedules { get; set; }
         public ICollection<BillSchedule> BillSchedules { get; set; }
+        public ICollection<MedicineStockHospital> MedicineStockHospitals { get; set; }
 
 
         public Employee()
         {
+            MedicineStockHospitals = new Collection<MedicineStockHospital>();
             Schedules = new Collection<Schedule>();
             Prescriptions = new Collection<Prescription>();
             Holidays = new Collection<Holiday>();

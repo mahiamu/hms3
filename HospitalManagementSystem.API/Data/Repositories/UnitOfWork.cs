@@ -34,7 +34,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         private IGenericRepository<Pharmacist> _pharmacists;
         private IGenericRepository<Doctor> _doctors;
         private IGenericRepository<MedicineCategory> _medicinecategories;
-        private IGenericRepository<Medicine> _medicines;
+        private IGenericRepository<MedicineStockHospital> _medicinestockhospitals;
         private IGenericRepository<Laboratoriest> _laboratoriests;
         private IGenericRepository<Weekday> _weekdays;
 
@@ -63,6 +63,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         private IGenericRepository<Ward> _Wards;
         private IGenericRepository<Admission> _admissions;
         private IGenericRepository<LabRequest> _labrequests;
+        private IGenericRepository<MedSupplier> _medsuppliers;
 
 
 
@@ -108,7 +109,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         public IGenericRepository<Doctor> Doctors => _doctors ??= new GenericRepository<Doctor>(_context);
         public IGenericRepository<Laboratoriest> Laboratoriests => _laboratoriests ??= new GenericRepository<Laboratoriest>(_context);
         public IGenericRepository<MedicineCategory> MedicineCategories => _medicinecategories ??= new GenericRepository< MedicineCategory>(_context);
-        public IGenericRepository<Medicine> Medicines => _medicines ??= new GenericRepository<Medicine>(_context);
+        public IGenericRepository<MedicineStockHospital> MedicineStockHospitals => _medicinestockhospitals ??= new GenericRepository<MedicineStockHospital>(_context);
         public IGenericRepository<PatientFile> PatientFiles => _patientFiles ??= new GenericRepository<PatientFile>(_context);
         public IGenericRepository<Weekday> Weekdays => _weekdays ??= new GenericRepository<Weekday>(_context);
         public IGenericRepository<Pathology> Pathologies => _pathologies ??= new GenericRepository<Pathology>(_context);
@@ -136,6 +137,7 @@ namespace HospitalManagementSystem.API.Data.Repositories
         public IGenericRepository<Admission> Admissions => _admissions ??= new GenericRepository<Admission>(_context);
 
         public IGenericRepository<LabRequest> LabRequests => _labrequests ??= new GenericRepository<LabRequest>(_context);
+        public IGenericRepository<MedSupplier> MedSuppliers => _medsuppliers ??= new GenericRepository<MedSupplier>(_context);
 
     }
 }

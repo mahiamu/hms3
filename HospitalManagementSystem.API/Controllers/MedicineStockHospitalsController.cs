@@ -14,15 +14,15 @@ namespace HospitalManagementSystem.API.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class MedicinesController : ControllerBase
+	public class MedicineStockHospitalsController : ControllerBase
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly ILogger<MedicinesController> _logger;
+		private readonly ILogger<MedicineStockHospitalsController> _logger;
 		private readonly IMapper _mapper;
 
-		public MedicinesController(
+		public MedicineStockHospitalsController(
 			IUnitOfWork unitOfWork,
-			ILogger<MedicinesController> logger,
+			ILogger<MedicineStockHospitalsController> logger,
 			IMapper mapper)
 		{
 			_unitOfWork = unitOfWork;
@@ -37,8 +37,8 @@ namespace HospitalManagementSystem.API.Controllers
 		{
 			try
 			{
-				var medicine = await _unitOfWork.Medicines.GetAll();
-				var result = _mapper.Map<IList<MedicineDisplayDto>>(medicine);
+				var medicine = await _unitOfWork.MedicineStockHospitals.GetAll();
+				var result = _mapper.Map<IList<MedicineStockHospitalDisplayDto>>(medicine);
 
 				return Ok(result);
 			}
@@ -57,8 +57,8 @@ namespace HospitalManagementSystem.API.Controllers
 		{
 			try
 			{
-				var medicine = await _unitOfWork.Medicines.Get(cn => cn.Id == id);
-				var result = _mapper.Map<MedicineDisplayDto>(medicine);
+				var medicine = await _unitOfWork.MedicineStockHospitals.Get(cn => cn.Id == id);
+				var result = _mapper.Map<MedicineStockHospitalDisplayDto>(medicine);
 
 				return Ok(result);
 			}
@@ -74,7 +74,7 @@ namespace HospitalManagementSystem.API.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> CreateMedicine([FromBody] MedicineFormDto medicineFormDto)
+		public async Task<IActionResult> CreateMedicine([FromBody] MedicineStockHospitalFormDto medicineFormDto)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -84,8 +84,8 @@ namespace HospitalManagementSystem.API.Controllers
 			}
 			try
 			{
-				var medicine = _mapper.Map<Medicine>(medicineFormDto);
-				await _unitOfWork.Medicines.Insert(medicine);
+				var medicine = _mapper.Map<MedicineStockHospital>(medicineFormDto);
+				await _unitOfWork.MedicineStockHospitals.Insert(medicine);
 				await _unitOfWork.Save();
 
 				return CreatedAtRoute("GetMedicine", new { id = medicine.Id }, medicine);
@@ -102,7 +102,7 @@ namespace HospitalManagementSystem.API.Controllers
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> UpdateMedicine(int id, [FromBody] MedicineFormDto medicineFormDto)
+		public async Task<IActionResult> UpdateMedicine(int id, [FromBody] MedicineStockHospitalFormDto medicineFormDto)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -112,7 +112,7 @@ namespace HospitalManagementSystem.API.Controllers
 			}
 			try
 			{
-				var medicine = await _unitOfWork.Medicines.Get(m => m.Id == id);
+				var medicine = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
 
 				if (medicine == null)
 				{
@@ -123,7 +123,7 @@ namespace HospitalManagementSystem.API.Controllers
 
 				_mapper.Map(medicineFormDto, medicine);
 
-				_unitOfWork.Medicines.Update(medicine);
+				_unitOfWork.MedicineStockHospitals.Update(medicine);
 
 				await _unitOfWork.Save();
 
@@ -153,7 +153,7 @@ namespace HospitalManagementSystem.API.Controllers
 
 			try
 			{
-				var medicine = await _unitOfWork.Medicines.Get(m => m.Id == id);
+				var medicine = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
 
 				if (medicine == null)
 				{
@@ -162,7 +162,7 @@ namespace HospitalManagementSystem.API.Controllers
 					return BadRequest("Medicine not found");
 				}
 
-				await _unitOfWork.Medicines.Delete(id);
+				await _unitOfWork.MedicineStockHospitals.Delete(id);
 
 				await _unitOfWork.Save();
 

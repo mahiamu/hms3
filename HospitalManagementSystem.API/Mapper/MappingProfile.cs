@@ -121,8 +121,8 @@ namespace HospitalManagementSystem.API.Mapper
             CreateMap<MedicineCategory, MedicineCategoryDisplayDto>().ReverseMap();
             CreateMap<MedicineCategory, MedicineCategoryFormDto>().ReverseMap();
 
-            CreateMap<Medicine, MedicineDisplayDto>().ReverseMap();
-            CreateMap<Medicine, MedicineFormDto>().ReverseMap();
+            CreateMap<MedicineStockHospital, MedicineStockHospitalDisplayDto>().ReverseMap();
+            CreateMap<MedicineStockHospital, MedicineStockHospitalFormDto>().ReverseMap();
 
             CreateMap<PatientFile, PatientFilesDisplayDto>().ReverseMap();
             CreateMap<PatientFile, PatientFilesFormDto>().ReverseMap();

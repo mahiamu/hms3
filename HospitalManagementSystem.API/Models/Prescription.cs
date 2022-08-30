@@ -15,8 +15,8 @@ namespace HospitalManagementSystem.API.Models
         public int PatientId { get; set; }
         public Employee Employee { get; set; }
         public int EmployeeId { get; set; }
-        public Medicine Medicine { get; set; }
-        public int MedicineId { get; set; }
+      //  public MedicineStockHospital Medicine { get; set; }
+        //public int MedicineId { get; set; }
 
 
 

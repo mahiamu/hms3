@@ -27,7 +27,6 @@ using HospitalManagementSystem.API.Dtos.Donors;
 using HospitalManagementSystem.API.Dtos.Pharmacists;
 using HospitalManagementSystem.API.Dtos.Doctors;
 using HospitalManagementSystem.API.Dtos.MedicineCategories;
-using HospitalManagementSystem.API.Dtos.Medicines;
 using HospitalManagementSystem.API.Dtos.PatientFiles;
 using HospitalManagementSystem.API.Dtos.Receptionists;
 using HospitalManagementSystem.API.Dtos.Specializations;
@@ -48,6 +47,7 @@ using HospitalManagementSystem.API.Dtos.Room;
 using HospitalManagementSystem.API.Dtos.Buildings;
 using HospitalManagementSystem.API.Dtos.PatientSchedules;
 using HospitalManagementSystem.API.Dtos.Admissions;
+using HospitalManagementSystem.API.Dtos.MedicineStockHospitals;
 
 namespace HospitalManagementSystem.API.Mapper
 {

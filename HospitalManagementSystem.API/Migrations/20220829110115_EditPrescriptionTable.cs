@@ -57,13 +57,7 @@ namespace HospitalManagementSystem.API.Migrations
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
-            migrationBuilder.AlterColumn<int>(
-                name: "MedicineId",
-                table: "Prescriptions",
-                type: "int",
-                nullable: true,
-                oldClrType: typeof(int),
-                oldType: "int");
+           
 
             migrationBuilder.AddColumn<int>(
                 name: "AdmissionId",
@@ -112,12 +106,7 @@ namespace HospitalManagementSystem.API.Migrations
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Prescriptions_Medicines_MedicineId",
-                table: "Prescriptions",
-                column: "MedicineId",
-                principalTable: "Medicines",
-                principalColumn: "Id");
+         
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -130,9 +119,7 @@ namespace HospitalManagementSystem.API.Migrations
                 name: "FK_Prescriptions_Medications_MedicationId",
                 table: "Prescriptions");
 
-            migrationBuilder.DropForeignKey(
-                name: "FK_Prescriptions_Medicines_MedicineId",
-                table: "Prescriptions");
+           
 
             migrationBuilder.DropIndex(
                 name: "IX_Prescriptions_AdmissionId",
@@ -199,23 +186,9 @@ namespace HospitalManagementSystem.API.Migrations
                 oldMaxLength: 255,
                 oldNullable: true);
 
-            migrationBuilder.AlterColumn<int>(
-                name: "MedicineId",
-                table: "Prescriptions",
-                type: "int",
-                nullable: false,
-                defaultValue: 0,
-                oldClrType: typeof(int),
-                oldType: "int",
-                oldNullable: true);
+          
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Prescriptions_Medicines_MedicineId",
-                table: "Prescriptions",
-                column: "MedicineId",
-                principalTable: "Medicines",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+           
         }
     }
 }

@@ -5,27 +5,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HospitalManagementSystem.API.Migrations
 {
-    public partial class EditMedicineTableToMedicineStockHospital : Migration
+    public partial class AddPharmacyMedStockTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Prescriptions_Medicines_MedicineId",
-                table: "Prescriptions");
-
-            migrationBuilder.DropTable(
-                name: "Medicines");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Prescriptions_MedicineId",
-                table: "Prescriptions");
-
-            migrationBuilder.DropColumn(
-                name: "MedicineId",
-                table: "Prescriptions");
-
             migrationBuilder.CreateTable(
-                name: "MedicineStockHospitas",
+                name: "PharmacyMedStocks",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -34,6 +19,7 @@ namespace HospitalManagementSystem.API.Migrations
                     BatchNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MedSupplierId = table.Column<int>(type: "int", nullable: false),
@@ -42,21 +28,21 @@ namespace HospitalManagementSystem.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MedicineStockHospitas", x => x.Id);
+                    table.PrimaryKey("PK_PharmacyMedStocks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MedicineStockHospitas_Employees_EmployeeId",
+                        name: "FK_PharmacyMedStocks_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicineStockHospitas_Medications_MedicationId",
+                        name: "FK_PharmacyMedStocks_Medications_MedicationId",
                         column: x => x.MedicationId,
                         principalTable: "Medications",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicineStockHospitas_MedSuppliers_MedSupplierId",
+                        name: "FK_PharmacyMedStocks_MedSuppliers_MedSupplierId",
                         column: x => x.MedSupplierId,
                         principalTable: "MedSuppliers",
                         principalColumn: "Id",
@@ -64,28 +50,26 @@ namespace HospitalManagementSystem.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicineStockHospitas_EmployeeId",
-                table: "MedicineStockHospitas",
+                name: "IX_PharmacyMedStocks_EmployeeId",
+                table: "PharmacyMedStocks",
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicineStockHospitas_MedicationId",
-                table: "MedicineStockHospitas",
+                name: "IX_PharmacyMedStocks_MedicationId",
+                table: "PharmacyMedStocks",
                 column: "MedicationId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_MedicineStockHospitas_MedSupplierId",
-                table: "MedicineStockHospitas",
+                name: "IX_PharmacyMedStocks_MedSupplierId",
+                table: "PharmacyMedStocks",
                 column: "MedSupplierId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MedicineStockHospitas");
+                name: "PharmacyMedStocks");
         }
-
-           
     }
 }

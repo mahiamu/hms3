@@ -49,10 +49,13 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<PatientSchedule> PatientSchedules { get; set; }
         public ICollection<BillSchedule> BillSchedules { get; set; }
         public ICollection<MedicineStockHospital> MedicineStockHospitals { get; set; }
+        public ICollection<PharmacyMedStock> PharmacyMedStocks { get; set; }
 
 
         public Employee()
         {
+           PharmacyMedStocks = new Collection<PharmacyMedStock>();
+
             MedicineStockHospitals = new Collection<MedicineStockHospital>();
             Schedules = new Collection<Schedule>();
             Prescriptions = new Collection<Prescription>();

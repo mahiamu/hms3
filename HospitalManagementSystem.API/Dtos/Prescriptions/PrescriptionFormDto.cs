@@ -9,20 +9,21 @@ namespace HospitalManagementSystem.API.Dtos.Prescriptions
     public class PrescriptionFormDto
     {
         [Required]
-        public DateTime Date { get; set; }
-
-        public string History { get; set; }
-
-        public string Note { get; set; }
-
-        [Required]
         public int PatientId { get; set; }
-
+      
         [Required]
         public int EmployeeId { get; set; }
+        [Required]
+        public int AdmissionId { get; set; }
+        public String prescriptionSubject { get; set; }
+        [Required]
+        public DateTime OrderDate { get; set; }
+        public String prescriptionDetail { get; set; }
+       
+        public bool Is_Cancelled { get; set; }
 
         [Required]
-        public int MedicineId { get; set; }
+        public int MedicationId { get; set; }
 
     }
 }

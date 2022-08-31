@@ -10,6 +10,7 @@ namespace HospitalManagementSystem.API.Models
         public MedicineCategory  MedicineCategory { get; set; }
         public int MedicineCategoryId { get; set; }
         public MedicineStockHospital MedicineStockHospital{ get; set; }
+        public PharmacyMedStock PharmacyMedStock { get; set; }
 
 
 

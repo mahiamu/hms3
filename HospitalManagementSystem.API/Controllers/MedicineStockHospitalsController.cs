@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HospitalManagementSystem.API.Dtos.Medicines;
+using HospitalManagementSystem.API.Dtos.MedicineStockHospitals;
 using HospitalManagementSystem.API.IRepositories;
 using HospitalManagementSystem.API.Models;
 using Microsoft.AspNetCore.Http;
@@ -30,100 +30,100 @@ namespace HospitalManagementSystem.API.Controllers
 			_mapper = mapper;
 		}
 
-		[HttpGet(Name = "GetMedicines")]
+		[HttpGet(Name = "GetMedicineStockHospitals")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> GetMedicines()
+		public async Task<IActionResult> GetMedicineStockHospitals()
 		{
 			try
 			{
-				var medicine = await _unitOfWork.MedicineStockHospitals.GetAll();
-				var result = _mapper.Map<IList<MedicineStockHospitalDisplayDto>>(medicine);
+				var medicinestockhospital = await _unitOfWork.MedicineStockHospitals.GetAll();
+				var result = _mapper.Map<IList<MedicineStockHospitalDisplayDto>>(medicinestockhospital);
 
 				return Ok(result);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Something went wrong in { nameof(GetMedicines) }");
+				_logger.LogError(ex, $"Something went wrong in { nameof(GetMedicineStockHospitals) }");
 
 				return StatusCode(500);
 			}
 		}
 
-		[HttpGet("{id:int}", Name = "GetMedicine")]
+		[HttpGet("{id:int}", Name = "GetMedicineStockHospital")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> GetMedicine(int id)
+		public async Task<IActionResult> GetMedicineStockHospital(int id)
 		{
 			try
 			{
-				var medicine = await _unitOfWork.MedicineStockHospitals.Get(cn => cn.Id == id);
-				var result = _mapper.Map<MedicineStockHospitalDisplayDto>(medicine);
+				var medicinestockhospital = await _unitOfWork.MedicineStockHospitals.Get(cn => cn.Id == id);
+				var result = _mapper.Map<MedicineStockHospitalDisplayDto>(medicinestockhospital);
 
 				return Ok(result);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Something went wrong in { nameof(GetMedicine) }");
+				_logger.LogError(ex, $"Something went wrong in { nameof(GetMedicineStockHospital) }");
 
 				return StatusCode(500);
 			}
 		}
 
-		[HttpPost(Name = "CreateMedicine")]
+		[HttpPost(Name = "CreateMedicineStockHospital")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> CreateMedicine([FromBody] MedicineStockHospitalFormDto medicineFormDto)
+		public async Task<IActionResult> CreateMedicineStockHospital([FromBody] MedicineStockHospitalFormDto medicinestockhospitalFormDto)
 		{
 			if (!ModelState.IsValid)
 			{
-				_logger.LogError($"Invalid Post attempt made at { nameof(CreateMedicine) }");
+				_logger.LogError($"Invalid Post attempt made at {nameof(CreateMedicineStockHospital) }");
 
 				return BadRequest(ModelState);
 			}
 			try
 			{
-				var medicine = _mapper.Map<MedicineStockHospital>(medicineFormDto);
-				await _unitOfWork.MedicineStockHospitals.Insert(medicine);
+				var medicinestockhospital = _mapper.Map<MedicineStockHospital>(medicinestockhospitalFormDto); 
+				await _unitOfWork.MedicineStockHospitals.Insert(medicinestockhospital);
 				await _unitOfWork.Save();
 
-				return CreatedAtRoute("GetMedicine", new { id = medicine.Id }, medicine);
+				return CreatedAtRoute("GetMedicineStockHospital", new { id = medicinestockhospital.Id }, medicinestockhospital);
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Something went wrong in { nameof(CreateMedicine) }");
+				_logger.LogError(ex, $"Something went wrong in { nameof(CreateMedicineStockHospital) }");
 
 				return StatusCode(500);
 			}
 		}
 
-		[HttpPut("{id:int}", Name = "UpdateMedicine")]
+		[HttpPut("{id:int}", Name = "UpdateMedicineStockHospital")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> UpdateMedicine(int id, [FromBody] MedicineStockHospitalFormDto medicineFormDto)
+		public async Task<IActionResult> UpdateMedicineStockHospital(int id, [FromBody] MedicineStockHospitalFormDto MedicineStockHospitalFormDto)
 		{
 			if (!ModelState.IsValid)
 			{
-				_logger.LogError($"Invalid Update attempt at { nameof(UpdateMedicine) }");
+				_logger.LogError($"Invalid Update attempt at { nameof(UpdateMedicineStockHospital) }");
 
 				return BadRequest(ModelState);
 			}
 			try
 			{
-				var medicine = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
+				var medicinestockhospital = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
 
-				if (medicine == null)
+				if (medicinestockhospital == null)
 				{
-					_logger.LogError($"Invalid Update attempt at { nameof(UpdateMedicine) }");
+					_logger.LogError($"Invalid Update attempt at { nameof(UpdateMedicineStockHospital) }");
 
-					return BadRequest("Medicine not found");
+					return BadRequest("MedicineStockHospital not found");
 				}
 
-				_mapper.Map(medicineFormDto, medicine);
+				_mapper.Map(MedicineStockHospitalFormDto, medicinestockhospital);
 
-				_unitOfWork.MedicineStockHospitals.Update(medicine);
+				_unitOfWork.MedicineStockHospitals.Update(medicinestockhospital);
 
 				await _unitOfWork.Save();
 
@@ -132,34 +132,34 @@ namespace HospitalManagementSystem.API.Controllers
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Something went wrong at { nameof(UpdateMedicine) }");
+				_logger.LogError(ex, $"Something went wrong at { nameof(UpdateMedicineStockHospital) }");
 
 				return StatusCode(500);
 			}
 		}
 
-		[HttpDelete("{id:int}", Name = "DeleteMedicine")]
+		[HttpDelete("{id:int}", Name = "DeleteMedicineStockHospital")]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-		public async Task<IActionResult> DeleteMedicine(int id)
+		public async Task<IActionResult> DeleteMedicineStockHospital(int id)
 		{
 			if (id < 1)
 			{
-				_logger.LogError($"Invalid DELETE request attempt made in { nameof(DeleteMedicine) }");
+				_logger.LogError($"Invalid DELETE request attempt made in { nameof(DeleteMedicineStockHospital) }");
 
 				return BadRequest();
 			}
 
 			try
 			{
-				var medicine = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
+				var medicinestockhospital = await _unitOfWork.MedicineStockHospitals.Get(m => m.Id == id);
 
-				if (medicine == null)
+				if (medicinestockhospital == null)
 				{
-					_logger.LogError($"Invalid Delete attempt at { nameof(DeleteMedicine) }");
+					_logger.LogError($"Invalid Delete attempt at { nameof(DeleteMedicineStockHospital) }");
 
-					return BadRequest("Medicine not found");
+					return BadRequest("MedicineStockHospital not found");
 				}
 
 				await _unitOfWork.MedicineStockHospitals.Delete(id);
@@ -170,7 +170,7 @@ namespace HospitalManagementSystem.API.Controllers
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, $"Something went wrong at { nameof(DeleteMedicine) }");
+				_logger.LogError(ex, $"Something went wrong at { nameof(DeleteMedicineStockHospital) }");
 
 				return StatusCode(500);
 			}

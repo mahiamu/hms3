@@ -21,11 +21,12 @@ namespace HospitalManagementSystem.API.Models
 
         public Medication Medication { get; set; }
         public int MedicationId { get; set; }
+        
 
-      
-      
-      
-      
+
+
+
+
 
 
 

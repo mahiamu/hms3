@@ -5,14 +5,9 @@ using System.Threading.Tasks;
 
 namespace HospitalManagementSystem.API.Dtos.Prescriptions
 {
-    public class PrescriptionDisplayDto
+    public class PrescriptionDisplayDto: PrescriptionFormDto
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string History { get; set; }
-        public string Note { get; set; }
-        public int PatientId { get; set; }
-        public int EmployeeId { get; set; }
-        public int MedicineId { get; set; }
+       
     }
 }

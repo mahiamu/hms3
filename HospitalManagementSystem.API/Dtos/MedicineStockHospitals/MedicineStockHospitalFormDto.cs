@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HospitalManagementSystem.API.Dtos.Medicines
+namespace HospitalManagementSystem.API.Dtos.MedicineStockHospitals
 {
     public class MedicineStockHospitalFormDto
     {

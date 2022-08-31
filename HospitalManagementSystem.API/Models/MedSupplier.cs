@@ -11,10 +11,13 @@ namespace HospitalManagementSystem.API.Models
         public int PhoneNumber { get; set; }
 
         public ICollection<MedicineStockHospital> MedicineStockHospitals { get; set; }
+        public ICollection<PharmacyMedStock> PharmacyMedStocks { get; set; }
 
 
         public MedSupplier()
         {
+            PharmacyMedStocks = new Collection<PharmacyMedStock>();
+
             MedicineStockHospitals = new Collection<MedicineStockHospital>();
         }
     }

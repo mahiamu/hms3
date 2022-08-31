@@ -50,11 +50,15 @@ namespace HospitalManagementSystem.API.Models
         public ICollection<BillSchedule> BillSchedules { get; set; }
         public ICollection<MedicineStockHospital> MedicineStockHospitals { get; set; }
         public ICollection<PharmacyMedStock> PharmacyMedStocks { get; set; }
+        public ICollection<LabRequest> LabRequests { get; set; }
+        public ICollection<Admission> Admissions { get; set; }
 
 
         public Employee()
         {
-           PharmacyMedStocks = new Collection<PharmacyMedStock>();
+            Admissions= new Collection<Admission>();
+            LabRequests = new Collection<LabRequest>();
+            PharmacyMedStocks = new Collection<PharmacyMedStock>();
 
             MedicineStockHospitals = new Collection<MedicineStockHospital>();
             Schedules = new Collection<Schedule>();

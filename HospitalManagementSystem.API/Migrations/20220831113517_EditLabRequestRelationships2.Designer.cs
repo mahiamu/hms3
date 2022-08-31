@@ -4,6 +4,7 @@ using HospitalManagementSystem.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagementSystem.API.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220831113517_EditLabRequestRelationships2")]
+    partial class EditLabRequestRelationships2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1716,6 +1718,9 @@ namespace HospitalManagementSystem.API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AdmissionId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("BuildingId")
                         .HasColumnType("int");
 
@@ -1744,6 +1749,8 @@ namespace HospitalManagementSystem.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdmissionId");
 
                     b.HasIndex("BuildingId");
 
@@ -1829,7 +1836,7 @@ namespace HospitalManagementSystem.API.Migrations
                         .IsRequired();
 
                     b.HasOne("HospitalManagementSystem.API.Models.Ward", "Ward")
-                        .WithMany("Admissions")
+                        .WithMany()
                         .HasForeignKey("WardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2394,6 +2401,10 @@ namespace HospitalManagementSystem.API.Migrations
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Ward", b =>
                 {
+                    b.HasOne("HospitalManagementSystem.API.Models.Admission", null)
+                        .WithMany("Wards")
+                        .HasForeignKey("AdmissionId");
+
                     b.HasOne("HospitalManagementSystem.API.Models.Building", "Building")
                         .WithMany("Wards")
                         .HasForeignKey("BuildingId");
@@ -2410,6 +2421,8 @@ namespace HospitalManagementSystem.API.Migrations
                     b.Navigation("Prescriptions");
 
                     b.Navigation("Rooms");
+
+                    b.Navigation("Wards");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.AdmissionType", b =>
@@ -2588,11 +2601,6 @@ namespace HospitalManagementSystem.API.Migrations
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Room", b =>
                 {
                     b.Navigation("PatientSchedules");
-                });
-
-            modelBuilder.Entity("HospitalManagementSystem.API.Models.Ward", b =>
-                {
-                    b.Navigation("Admissions");
                 });
 
             modelBuilder.Entity("HospitalManagementSystem.API.Models.Weekday", b =>

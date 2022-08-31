@@ -19,13 +19,6 @@ namespace HospitalManagementSystem.API.Models
         public string Priority { get; set; }
         public bool IsCancelled { get; set; }
         public bool IsPaid { get; set; }=false;
-        public ICollection<Admission> Admissions { get; set; }
        
-        public ICollection<Employee> Employees { get; set; }
-        public LabRequest()
-        {
-            Admissions = new Collection<Admission>();
-            Employees = new Collection<Employee>();
-         }
       }
 }
